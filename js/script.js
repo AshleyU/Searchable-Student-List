@@ -18,7 +18,35 @@ Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
 */
 
+function showPage (list, page) {
+	const startIndex = (page * 9) - 9;
+	const endIndex = page * 9;
+	const studentList = document.querySelector(".student-list");
+	studentList.innerHTML = "";
+	for (let i = 0; i < list.length; i++) {
+		if ( i >= startIndex && i < endIndex ) {
+			let studentItem = list[i];
+			let studentTemplate = getStudentTemplate(studentItem);
+			studentList.insertAdjacentHTML("beforeend", studentTemplate);
+		}
+	}
+}
 
+function getStudentTemplate (studentItem) {
+	let studentTemplate = ` <li class="student-item cf">
+    							<div class="student-details">
+      <img class="avatar" src="${studentItem.picture.medium}" alt="Profile Picture">
+      <h3>${studentItem.name.title} ${studentItem.name.first} ${studentItem.name.last}</h3>
+      <span class="email">${studentItem.email}</span>
+    </div>
+    <div class="joined-details">
+      <span class="date">Joined ${studentItem.registered.date}</span>
+    </div>
+  </li>`;
+	return studentTemplate;
+}
+
+showPage(data, 1);
 
 /*
 Create the `addPagination` function
