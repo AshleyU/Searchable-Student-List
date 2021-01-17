@@ -15,11 +15,17 @@ function showPage (list, page) {
 		return;
 	}
 	const startIndex = (page * 9) - 9;
-	const endIndex = page * 9;
+	let endIndex = page * 9;
+	let studentLeft = list.length - startIndex;
+
+	if ( studentLeft < 9 ) {
+		endIndex = list.length - 1;
+	}
+
 	const studentList = document.querySelector(".student-list");
 	studentList.innerHTML = "";
 	for (let i = 0; i < list.length; i++) {
-		if ( i >= startIndex && i < endIndex ) {
+		if ( i >= startIndex && i <= endIndex ) {
 			let studentItem = list[i];
 			let studentTemplate = getStudentTemplate(studentItem);
 			studentList.insertAdjacentHTML("beforeend", studentTemplate);
@@ -53,6 +59,9 @@ listens for button clicks to show the next page.
 */
 
 function addPagination (list) {
+	if ( list === undefined || list.length == 0 ) {
+		return;
+	}
 	const numOfButtons = Math.ceil(list.length / 9);
 	const linkList = document.querySelector(".link-list");
 	linkList.innerHTML = "";
@@ -69,7 +78,7 @@ function addPagination (list) {
 			let activeButton = document.querySelector(".active");
 			activeButton.className = "";
 			e.target.className = "active";
-			showPage(data, e.target.textContent);
+			showPage(list, e.target.textContent);
 		}
 	}); 
 }
@@ -113,8 +122,8 @@ on the page.
 function performSearch (inputText) {
 	let filteredStudents = [];
 	for (let i = 0; i < data.length; i++) {
-		const firstIncludesInput = data[i].name.first.includes(inputText);
-		const lastIncludesInput = data[i].name.last.includes(inputText);
+		const firstIncludesInput = data[i].name.first.toLowerCase().includes(inputText.toLowerCase());
+		const lastIncludesInput = data[i].name.last.toLowerCase().includes(inputText.toLowerCase());
 		if ( firstIncludesInput || lastIncludesInput ) {
 			filteredStudents.push(data[i]);
 		}
