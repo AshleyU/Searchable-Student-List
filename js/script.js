@@ -48,7 +48,7 @@ function getStudentTemplate (studentItem) {
 
 showPage(data, 1);
 
-function appendButtons (list) {
+function addPagination (list) {
 	const numOfButtons = Math.ceil(list.length / 9);
 	const linkList = document.querySelector(".link-list");
 	linkList.innerHTML = "";
@@ -59,9 +59,17 @@ function appendButtons (list) {
  		</li>`
  		linkList.insertAdjacentHTML("beforeend", buttonTemplate);
 	}
-
+	document.querySelector(".link-list > li:first-child > button").className = "active";
+	linkList.addEventListener('click', (e) => {
+		if ( e.target.tagName === 'BUTTON') {
+			let activeButton = document.querySelector(".active");
+			activeButton.className = "";
+			e.target.className = "active";
+			showPage(data, e.target.textContent);
+		}
+	}); 
 }
-appendButtons(data);
+addPagination(data);
 
 /*
 Create the `addPagination` function
