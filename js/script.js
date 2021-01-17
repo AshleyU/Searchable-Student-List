@@ -8,6 +8,11 @@ to display the page of nine students
 */
 
 function showPage (list, page) {
+	if ( list === undefined || list.length == 0 ) {
+		const studentList = document.querySelector(".student-list");
+		studentList.innerHTML = "<h2>No students found.</h2>";
+		return;
+	}
 	const startIndex = (page * 9) - 9;
 	const endIndex = page * 9;
 	const studentList = document.querySelector(".student-list");
@@ -42,7 +47,8 @@ function getStudentTemplate (studentItem) {
 
 /*
 The "addPagination" function creates and inserts the elements 
-needed for the pagination buttons
+needed for the pagination buttons. The addEventListener inside the function
+listens for button clicks to show the next page.
 */
 
 function addPagination (list) {
@@ -67,18 +73,48 @@ function addPagination (list) {
 	}); 
 }
 
-function addSearchBar (page) {
+/*
+The "addSearchBar" function creates and inserts the elements 
+needed for the search bar
+*/
+
+function SearchBar (list) {
 	const pageHeader = document.querySelector(".header");
 	const searchBar = `<label for="search" class="student-search">
   					   <input id="search" placeholder="Search by name...">
   					   <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
 					   </label>`		
  	pageHeader.insertAdjacentHTML("beforeend", searchBar);
+	const searchInput = document.querySelector("#search");
+	const searchButton = searchInput.nextElementSibling;
+	searchInput.addEventListener('keyup', (e) => {
+		if ( e.target.tagName === 'INPUT') {
+			performSearch(searchInput.value);
+		}
+	});
+	searchButton.addEventListener('click', (e) => {
+		if ( e.target.tagName === 'BUTTON') {
+			performSearch(searchInput.value);
+		}
+	});
+}
+
+function performSearch (inputText) {
+	let filteredStudents = [];
+	for (let i = 0; i < data.length; i++) {
+		const firstIncludesInput = data[i].name.first.includes(inputText);
+		const lastIncludesInput = data[i].name.last.includes(inputText);
+		if ( firstIncludesInput || lastIncludesInput ) {
+			filteredStudents.push(data[i]);
+		}
+	}
+	showPage(filteredStudents, 1);
+	addPagination(filteredStudents);
 }
 
 // Calling functions
 
-addSearchBar(data);
+SearchBar(data);
 
 showPage(data, 1);
 
