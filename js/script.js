@@ -1,21 +1,10 @@
 /*
-Treehouse Techdegree:
-FSJS Project 2 - Data Pagination and Filtering
+Data Pagination and Filtering: Student List
 */
 
-
-
 /*
-For assistance:
-   Check out the "Project Resources" section of the Instructions tab: https://teamtreehouse.com/projects/data-pagination-and-filtering#instructions
-   Reach out in your Slack community: https://treehouse-fsjs-102.slack.com/app_redirect?channel=unit-2
-*/
-
-
-
-/*
-Create the `showPage` function
-This function will create and insert/append the elements needed to display a "page" of nine students
+The "showPage" function creates and inserts the elements needed 
+to display the page of nine students
 */
 
 function showPage (list, page) {
@@ -32,6 +21,11 @@ function showPage (list, page) {
 	}
 }
 
+/*
+The "getStudentTemplate" function puts together the template for each
+student's information and returns the template to make things more organized
+*/
+
 function getStudentTemplate (studentItem) {
 	let studentTemplate = ` <li class="student-item cf">
     	<div class="student-details">
@@ -46,7 +40,10 @@ function getStudentTemplate (studentItem) {
 	return studentTemplate;
 }
 
-showPage(data, 1);
+/*
+The "addPagination" function creates and inserts the elements 
+needed for the pagination buttons
+*/
 
 function addPagination (list) {
 	const numOfButtons = Math.ceil(list.length / 9);
@@ -69,13 +66,14 @@ function addPagination (list) {
 		}
 	}); 
 }
+
+// Calling functions
+
+showPage(data, 1);
+
 addPagination(data);
 
-/*
-Create the `addPagination` function
-This function will create and insert/append the elements needed for the pagination buttons
-*/
 
 
 
-// Call functions
+
