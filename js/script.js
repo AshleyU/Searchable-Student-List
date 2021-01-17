@@ -67,12 +67,22 @@ function addPagination (list) {
 	}); 
 }
 
+function addSearchBar (page) {
+	const pageHeader = document.querySelector(".header");
+	const searchBar = `<label for="search" class="student-search">
+  					   <input id="search" placeholder="Search by name...">
+  					   <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
+					   </label>`		
+ 	pageHeader.insertAdjacentHTML("beforeend", searchBar);
+}
+
 // Calling functions
+
+addSearchBar(data);
 
 showPage(data, 1);
 
 addPagination(data);
-
 
 
 
