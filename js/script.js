@@ -34,19 +34,34 @@ function showPage (list, page) {
 
 function getStudentTemplate (studentItem) {
 	let studentTemplate = ` <li class="student-item cf">
-    							<div class="student-details">
-      <img class="avatar" src="${studentItem.picture.medium}" alt="Profile Picture">
-      <h3>${studentItem.name.title} ${studentItem.name.first} ${studentItem.name.last}</h3>
-      <span class="email">${studentItem.email}</span>
-    </div>
-    <div class="joined-details">
-      <span class="date">Joined ${studentItem.registered.date}</span>
-    </div>
-  </li>`;
+    	<div class="student-details">
+			<img class="avatar" src="${studentItem.picture.medium}" alt="Profile Picture">
+			<h3>${studentItem.name.title} ${studentItem.name.first} ${studentItem.name.last}</h3>
+			<span class="email">${studentItem.email}</span>
+		</div>
+		<div class="joined-details">
+			<span class="date">Joined ${studentItem.registered.date}</span>
+		</div>
+		</li>`;
 	return studentTemplate;
 }
 
 showPage(data, 1);
+
+function appendButtons (list) {
+	const numOfButtons = Math.ceil(list.length / 9);
+	const linkList = document.querySelector(".link-list");
+	linkList.innerHTML = "";
+	for ( let i = 1; i <= numOfButtons; i++ ) {
+		let pageNumButtons = list[i];
+		let buttonTemplate = `<li>
+   		<button type="button">${i}</button>
+ 		</li>`
+ 		linkList.insertAdjacentHTML("beforeend", buttonTemplate);
+	}
+
+}
+appendButtons(data);
 
 /*
 Create the `addPagination` function
