@@ -3,8 +3,9 @@ Data Pagination and Filtering: Student List
 */
 
 /*
-The "showPage" function creates and inserts the elements needed 
-to display the page of nine students
+The "showPage" function first shows "no students found" 
+if the list is empty and then creates and inserts the 
+elements needed to display the page of nine students
 */
 
 function showPage (list, page) {
@@ -75,7 +76,9 @@ function addPagination (list) {
 
 /*
 The "addSearchBar" function creates and inserts the elements 
-needed for the search bar
+needed for the search bar and then uses addEventListener to listen
+for input into the search bar or button clicks. When an event happens
+they call the performSearch function.
 */
 
 function SearchBar (list) {
@@ -98,6 +101,14 @@ function SearchBar (list) {
 		}
 	});
 }
+
+/* 
+The "performSearch" function loops through the student data array
+and then using a condition statement makes sure the input matches
+a students first or last name before the matching student displays
+on the page.
+
+*/
 
 function performSearch (inputText) {
 	let filteredStudents = [];
