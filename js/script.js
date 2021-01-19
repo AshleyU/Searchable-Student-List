@@ -19,13 +19,13 @@ function showPage (list, page) {
 	let studentLeft = list.length - startIndex;
 
 	if ( studentLeft < 9 ) {
-		endIndex = list.length - 1;
+		endIndex = list.length;
 	}
 
 	const studentList = document.querySelector(".student-list");
 	studentList.innerHTML = "";
 	for (let i = 0; i < list.length; i++) {
-		if ( i >= startIndex && i <= endIndex ) {
+		if ( i >= startIndex && i < endIndex ) {
 			let studentItem = list[i];
 			let studentTemplate = getStudentTemplate(studentItem);
 			studentList.insertAdjacentHTML("beforeend", studentTemplate);
