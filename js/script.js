@@ -4,7 +4,7 @@ Data Pagination and Filtering: Student List
 
 /*
 The "showPage" function first shows "no students found" 
-if the list is empt. If the list is not empty it creates 
+if the list is empty. If the list is not empty it creates 
 and inserts the elements needed to display the page of nine students.
 */
 
