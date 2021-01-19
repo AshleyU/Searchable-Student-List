@@ -70,9 +70,13 @@ function addPagination (list) {
  		</li>`
  		linkList.insertAdjacentHTML("beforeend", buttonTemplate);
 	}
-
+	
+	if ( list.length > 0 ) {
+	
 	const firstButton = linkList.querySelector('button');
     firstButton.className = 'active';
+    
+	}
 	
 	linkList.addEventListener('click', (e) => {
 		if ( e.target.tagName === 'BUTTON') {
