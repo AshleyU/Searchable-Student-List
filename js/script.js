@@ -4,8 +4,8 @@ Data Pagination and Filtering: Student List
 
 /*
 The "showPage" function first shows "no students found" 
-if the list is empty and then creates and inserts the 
-elements needed to display the page of nine students
+if the list is empt. If the list is not empty it creates 
+and inserts the elements needed to display the page of nine students.
 */
 
 function showPage (list, page) {
@@ -35,7 +35,8 @@ function showPage (list, page) {
 
 /*
 The "getStudentTemplate" function puts together the template for each
-student's information and returns the template to make things more organized
+student's information and returns the template. 
+Added this just to keep my code more organized.
 */
 
 function getStudentTemplate (studentItem) {
@@ -55,7 +56,7 @@ function getStudentTemplate (studentItem) {
 /*
 The "addPagination" function creates and inserts the elements 
 needed for the pagination buttons. The addEventListener inside the function
-listens for button clicks to show the next page.
+listens for button clicks to show the page which was clicked.
 */
 
 function addPagination (list) {
@@ -85,7 +86,7 @@ function addPagination (list) {
 
 /*
 The "addSearchBar" function creates and inserts the elements 
-needed for the search bar and then uses addEventListener to listen
+needed for the search bar and then uses an addEventListener to listen
 for input into the search bar or button clicks. When an event happens
 they call the performSearch function.
 */
@@ -113,10 +114,9 @@ function SearchBar (list) {
 
 /* 
 The "performSearch" function loops through the student data array
-and then using a condition statement makes sure the input matches
-a students first or last name before the matching student displays
+and then, using a conditional statement, makes sure the input matches
+a student's first or last name. Then, the matching student displays
 on the page.
-
 */
 
 function performSearch (inputText) {
