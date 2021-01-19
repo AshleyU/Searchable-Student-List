@@ -59,9 +59,6 @@ listens for button clicks to show the next page.
 */
 
 function addPagination (list) {
-	if ( list === undefined || list.length == 0 ) {
-		return;
-	}
 	const numOfButtons = Math.ceil(list.length / 9);
 	const linkList = document.querySelector(".link-list");
 	linkList.innerHTML = "";
@@ -72,7 +69,9 @@ function addPagination (list) {
  		</li>`
  		linkList.insertAdjacentHTML("beforeend", buttonTemplate);
 	}
-	document.querySelector(".link-list > li:first-child > button").className = "active";
+	if ( list === 9 ) {
+		document.querySelector(".link-list > li:first-child > button").className = "active";
+	}
 	linkList.addEventListener('click', (e) => {
 		if ( e.target.tagName === 'BUTTON') {
 			let activeButton = document.querySelector(".active");
